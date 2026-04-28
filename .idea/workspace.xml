@@ -208,6 +208,37 @@
       <option name="presentableId" value="Default" />
       <updated>1777398891383</updated>
     </task>
+    <task id="LOCAL-00001" summary="add get_info() to routes.py">
+      <option name="closed" value="true" />
+      <created>1777408963366</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1777408963366</updated>
+    </task>
+    <task id="LOCAL-00002" summary="add all_jobs.py where all job name variables and corresponding url links are kept">
+      <option name="closed" value="true" />
+      <created>1777409291559</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1777409291559</updated>
+    </task>
+    <task id="LOCAL-00003" summary="renamed get_info() and /get_info to get_results, structured future logic with methods inside of get_results.">
+      <option name="closed" value="true" />
+      <created>1777410921981</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1777410921981</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add get_info() to routes.py" />
+    <MESSAGE value="add all_jobs.py where all job name variables and corresponding url links are kept" />
+    <MESSAGE value="renamed get_info() and /get_info to get_results, structured future logic with methods inside of get_results." />
+    <option name="LAST_COMMIT_MESSAGE" value="renamed get_info() and /get_info to get_results, structured future logic with methods inside of get_results." />
   </component>
 </project>
