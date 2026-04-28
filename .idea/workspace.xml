@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac42a176-a31c-4d92-b4d2-525a707b3960" name="Changes" comment="add all_jobs.py where all job name variables and corresponding url links are kept">
+    <list default="true" id="ac42a176-a31c-4d92-b4d2-525a707b3960" name="Changes" comment="renamed get_info() and /get_info to get_results, structured future logic with methods inside of get_results.">
+      <change afterPath="$PROJECT_DIR$/app/inner_logic/ai_logic.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/inner_logic/parsing_logic.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/inner_logic/request_logic.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.py" afterDir="false" />
     </list>
@@ -59,10 +62,17 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "feature/scrape__page",
+    "git-widget-placeholder": "feature/get__results",
+    "last_opened_file_path": "C:/Users/Arseniy/PycharmProjects/JobScraper6000/app/inner_logic",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Arseniy\PycharmProjects\JobScraper6000\app\inner_logic" />
+      <recent name="C:\Users\Arseniy\PycharmProjects\JobScraper6000\app" />
+    </key>
+  </component>
   <component name="RunManager" selected="Python.flask_app">
     <configuration name="Unnamed" type="CompoundRunConfigurationType">
       <method v="2" />
@@ -228,12 +238,21 @@
       <option name="project" value="LOCAL" />
       <updated>1777409291559</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="renamed get_info() and /get_info to get_results, structured future logic with methods inside of get_results.">
+      <option name="closed" value="true" />
+      <created>1777410921981</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1777410921981</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add get_info() to routes.py" />
     <MESSAGE value="add all_jobs.py where all job name variables and corresponding url links are kept" />
-    <option name="LAST_COMMIT_MESSAGE" value="add all_jobs.py where all job name variables and corresponding url links are kept" />
+    <MESSAGE value="renamed get_info() and /get_info to get_results, structured future logic with methods inside of get_results." />
+    <option name="LAST_COMMIT_MESSAGE" value="renamed get_info() and /get_info to get_results, structured future logic with methods inside of get_results." />
   </component>
 </project>
