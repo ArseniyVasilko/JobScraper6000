@@ -1,7 +1,6 @@
 from app import app
 from flask import render_template, request
-from constants import ALL_JOB_PAGES
-import requests
+from app.constants import ALL_JOB_PAGES
 from app.services import ai_service, parsing_service, request_service
 
 @app.route('/')
@@ -15,17 +14,17 @@ def settings_panel():
 @app.route('/get_results', methods=['GET'])
 def get_results():
     filtered_jobs = []
-    for job_board in request.args.getlist('job_boards'):
-        print("Requesting information for " + job_board)
-        all_job_board_pages = request_service.scan_all_jobs(job_board)
-        print("Http request for " + job_board + "successfully executed")
-        all_job_links = parsing_service.scan_for_links(all_job_board_pages)
-        print("Links successfully extracted")
-        filtered_job_links = ai_service.filter_with_ai(all_job_links)
-        print("Jobs successfully filtered")
-        filtered_jobs.append((job_board, filtered_job_links))
-        print(job_board + "'s jobs appended to results")
-    add_jobs_to_db(filtered_jobs)
-    print("All jobs successfully added to database")
+    # for job_board in request.args.getlist('job_boards'):
+    #     print("Requesting information for " + job_board)
+    #     all_job_board_pages = request_service.scan_all_jobs(job_board)
+    #     print("Http request for " + job_board + "successfully executed")
+    #     all_job_links = parsing_service.scan_for_links(all_job_board_pages)
+    #     print("Links successfully extracted")
+    #     filtered_job_links = ai_service.filter_with_ai(all_job_links)
+    #     print("Jobs successfully filtered")
+    #     filtered_jobs.append((job_board, filtered_job_links))
+    #     print(job_board + "'s jobs appended to results")
+    # add_jobs_to_db(filtered_jobs)
+    # print("All jobs successfully added to database")
     return render_template('results_panel.html', filtered_jobs=filtered_jobs)
 
