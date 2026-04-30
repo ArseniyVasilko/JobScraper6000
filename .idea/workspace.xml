@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac42a176-a31c-4d92-b4d2-525a707b3960" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../JobScraper6000/app/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/../JobScraper6000/app/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../JobScraper6000/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/../JobScraper6000/app/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/all_jobs.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/inner_logic/ai_logic.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/ai_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/inner_logic/parsing_logic.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/parsing_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/inner_logic/request_logic.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/request_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +26,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../JobScraper6000" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="SYNC" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -35,7 +37,7 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/ArseniyVasilko/JobScraper6000.git&quot;,
+    &quot;url&quot;: &quot;https://github.com/ArseniyVasilko/JobScraper6000/&quot;,
     &quot;accountId&quot;: &quot;071f0327-ad0b-4f80-a680-4ba1b703668d&quot;
   }
 }</component>
@@ -47,18 +49,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.flask_app.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.flask_app.executor": "Run",
+    "Python.test.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/Arseniy/PycharmProjects/JobScraper6000/app/services",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Arseniy\PycharmProjects\JobScraper6000\app\services" />
+    </key>
+  </component>
   <component name="RunManager" selected="Python.flask_app">
     <configuration name="Unnamed" type="CompoundRunConfigurationType">
       <method v="2" />
