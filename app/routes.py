@@ -1,15 +1,13 @@
 from app import app
-from flask import render_template
-from all_jobs import ALL_JOB_PAGES
+from flask import render_template, request
+from constants import ALL_JOB_PAGES
 import requests
-import request_logic
-import parsing_logic
-import ai_logic
+from app.services import ai_service, parsing_service, request_service
 
 @app.route('/')
-def results_panel():
+def settings_panel():
 
-    return render_template('results_panel.html')
+    return render_template('settings_panel.html')
 
 # For all job boards requested sends http request, parses http page,
 # extracts the job listing links and connects to GeminiAPI to filter.
