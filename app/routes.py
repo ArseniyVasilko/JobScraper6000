@@ -14,12 +14,13 @@ def settings_panel():
 @app.route('/get_results', methods=['GET'])
 def get_results():
     filtered_jobs = []
-    # for job_board in request.args.getlist('job_boards'):
-    #     print("Requesting information for " + job_board)
-    #     all_job_board_pages = request_service.scan_all_jobs(job_board)
-    #     print("Http request for " + job_board + "successfully executed")
-    #     all_job_links = parsing_service.scan_for_links(all_job_board_pages)
-    #     print("Links successfully extracted")
+    for job_board in request.args.getlist('job_boards'):
+        print("Requesting information for " + job_board)
+        all_job_board_pages = request_service.scan_all_jobs(job_board)
+        print("Http request for " + job_board + " successfully executed")
+        all_job_links = parsing_service.scan_for_links(all_job_board_pages, job_board)
+        print("Links successfully extracted")
+        print(*all_job_links, sep="\n")
     #     filtered_job_links = ai_service.filter_with_ai(all_job_links)
     #     print("Jobs successfully filtered")
     #     filtered_jobs.append((job_board, filtered_job_links))
