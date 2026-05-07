@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac42a176-a31c-4d92-b4d2-525a707b3960" name="Changes" comment="fix: renamed _logic file references in routes.py (for some reason didn't refactor in the last commit)">
-      <change beforePath="$PROJECT_DIR$/.idea/PythonProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PythonProject.iml" afterDir="false" />
+    <list default="true" id="ac42a176-a31c-4d92-b4d2-525a707b3960" name="Changes" comment="Implement scan_for_links() in parsing_service.py. Uncommented respective method references in get_results of routes.py.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/parsing_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/parsing_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/ai_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/ai_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +41,16 @@
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/ArseniyVasilko/JobScraper6000/&quot;,
     &quot;accountId&quot;: &quot;071f0327-ad0b-4f80-a680-4ba1b703668d&quot;
+  },
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
+    },
+    &quot;owner&quot;: &quot;ArseniyVasilko&quot;,
+    &quot;repository&quot;: &quot;JobScraper6000&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -62,7 +71,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/scan__for__links()&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/filter__with__ai()&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/Arseniy/PycharmProjects/JobScraper6000/app&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
@@ -256,7 +265,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777555752520</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Implement scan_for_links() in parsing_service.py. Uncommented respective method references in get_results of routes.py.">
+      <option name="closed" value="true" />
+      <created>1778162154848</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1778162154848</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -276,6 +293,7 @@
     <MESSAGE value="renamed get_info() and /get_info to get_results, structured future logic with methods inside of get_results." />
     <MESSAGE value="Rename the _logic files to _service for better naming convention. Rename all_jobs.py to constants.py for possible different constants in the future. Adjusted/refactored imports in routes.py accordingly." />
     <MESSAGE value="fix: renamed _logic file references in routes.py (for some reason didn't refactor in the last commit)" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: renamed _logic file references in routes.py (for some reason didn't refactor in the last commit)" />
+    <MESSAGE value="Implement scan_for_links() in parsing_service.py. Uncommented respective method references in get_results of routes.py." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement scan_for_links() in parsing_service.py. Uncommented respective method references in get_results of routes.py." />
   </component>
 </project>
