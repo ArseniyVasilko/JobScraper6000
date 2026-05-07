@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac42a176-a31c-4d92-b4d2-525a707b3960" name="Changes" comment="Update requirements.txt">
+    <list default="true" id="ac42a176-a31c-4d92-b4d2-525a707b3960" name="Changes" comment="Add print(&quot;genai client loaded&quot;) to __init__.py">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/resources/cv/.gitkeep" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/services/ai_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/ai_service.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -282,7 +283,23 @@
       <option name="project" value="LOCAL" />
       <updated>1778163472861</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Set up initial genai client imports and model name in __init__.py">
+      <option name="closed" value="true" />
+      <created>1778178630518</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1778178630518</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Add print(&quot;genai client loaded&quot;) to __init__.py">
+      <option name="closed" value="true" />
+      <created>1778178847064</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1778178847064</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -304,6 +321,8 @@
     <MESSAGE value="fix: renamed _logic file references in routes.py (for some reason didn't refactor in the last commit)" />
     <MESSAGE value="Implement scan_for_links() in parsing_service.py. Uncommented respective method references in get_results of routes.py." />
     <MESSAGE value="Update requirements.txt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update requirements.txt" />
+    <MESSAGE value="Set up initial genai client imports and model name in __init__.py" />
+    <MESSAGE value="Add print(&quot;genai client loaded&quot;) to __init__.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add print(&quot;genai client loaded&quot;) to __init__.py" />
   </component>
 </project>
