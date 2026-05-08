@@ -10,7 +10,7 @@ print("config updated")
 
 #Google genai setup and config
 MODEL = "gemini-2.5-flash-lite"
-client = genai.Client(api_key=os.environ["GOOGLE_API_KEY"])
-print("genai client loaded")
+client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
+print("genai client loaded with API key " + os.getenv("GOOGLE_API_KEY"))
 
 from app import routes
