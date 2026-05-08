@@ -83,7 +83,7 @@ def classify(summary: str) -> str:
 def re_evaluate(verdict: str) -> str:
     response = client.models.generate_content(
         model="models/gemini-2.5-flash-lite",
-        contents=["Previous AI response: " + verdict.text],
+        contents=["Previous AI response: " + verdict],
         config=genai.types.GenerateContentConfig(
             temperature=0.0,
             system_instruction=REVALIDATION_INSTRUCTION
