@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac42a176-a31c-4d92-b4d2-525a707b3960" name="Changes" comment="Implement filter_with_ai() in ai_service.py.">
+    <list default="true" id="ac42a176-a31c-4d92-b4d2-525a707b3960" name="Changes" comment="Fix verdict (str) from verdict.text on line 86 of ai_service.py.">
+      <change afterPath="$PROJECT_DIR$/app/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/ai_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/ai_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/styles/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/index.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,15 +18,15 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/filter_with_ai()" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -60,26 +62,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.flask_app.executor": "Run",
-    "Python.request_service.executor": "Run",
-    "Python.test.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Arseniy/PycharmProjects/JobScraper6000/app",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.flask_app.executor&quot;: &quot;Run&quot;,
+    &quot;Python.request_service.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/base.html&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Arseniy/PycharmProjects/JobScraper6000/app&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Arseniy\PycharmProjects\JobScraper6000\app" />
       <recent name="C:\Users\Arseniy\PycharmProjects\JobScraper6000" />
       <recent name="C:\Users\Arseniy\PycharmProjects\JobScraper6000\app\services" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Arseniy\PycharmProjects\JobScraper6000\app\static" />
+      <recent name="C:\Users\Arseniy\PycharmProjects\JobScraper6000\app\templates" />
     </key>
   </component>
   <component name="RunManager">
@@ -313,7 +319,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778272490990</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Fix verdict (str) from verdict.text on line 86 of ai_service.py.">
+      <option name="closed" value="true" />
+      <created>1778273035594</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1778273035594</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -339,6 +353,7 @@
     <MESSAGE value="Add print(&quot;genai client loaded&quot;) to __init__.py" />
     <MESSAGE value="Add app/resources/cv for cvs to be processed by ai_service.py. Create and add same folder's contents to gitignore (no personal cv info)" />
     <MESSAGE value="Implement filter_with_ai() in ai_service.py." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement filter_with_ai() in ai_service.py." />
+    <MESSAGE value="Fix verdict (str) from verdict.text on line 86 of ai_service.py." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix verdict (str) from verdict.text on line 86 of ai_service.py." />
   </component>
 </project>
