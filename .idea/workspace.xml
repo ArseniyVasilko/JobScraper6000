@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac42a176-a31c-4d92-b4d2-525a707b3960" name="Changes" comment="Add jobscraper_logo.png to new app/static/images folder">
+    <list default="true" id="ac42a176-a31c-4d92-b4d2-525a707b3960" name="Changes" comment="Add logo image reference to base.html">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/results_panel.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/results_panel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/settings_panel.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/settings_panel.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +79,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Arseniy\PycharmProjects\JobScraper6000\app\static\images" />
       <recent name="C:\Users\Arseniy\PycharmProjects\JobScraper6000\app" />
       <recent name="C:\Users\Arseniy\PycharmProjects\JobScraper6000" />
       <recent name="C:\Users\Arseniy\PycharmProjects\JobScraper6000\app\services" />
@@ -340,7 +344,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778501000561</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Add logo image reference to base.html">
+      <option name="closed" value="true" />
+      <created>1778501192932</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1778501192932</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -369,6 +381,7 @@
     <MESSAGE value="Fix verdict (str) from verdict.text on line 86 of ai_service.py." />
     <MESSAGE value="Replace index.html vs base.html, moved styles.css to new static folder" />
     <MESSAGE value="Add jobscraper_logo.png to new app/static/images folder" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add jobscraper_logo.png to new app/static/images folder" />
+    <MESSAGE value="Add logo image reference to base.html" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add logo image reference to base.html" />
   </component>
 </project>
