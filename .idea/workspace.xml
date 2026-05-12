@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac42a176-a31c-4d92-b4d2-525a707b3960" name="Changes" comment="Add logo image reference to base.html">
+    <list default="true" id="ac42a176-a31c-4d92-b4d2-525a707b3960" name="Changes" comment="Add inheritance blocks to base.html, add {% extends &quot;base.html&quot; %} to all other html files">
+      <change afterPath="$PROJECT_DIR$/app/static/images/arrow_back.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/styles/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/results_panel.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/results_panel.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/settings_panel.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/settings_panel.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,21 +63,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.flask_app.executor": "Run",
-    "Python.request_service.executor": "Run",
-    "Python.test.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "feature/base.html",
-    "last_opened_file_path": "C:/Users/Arseniy/PycharmProjects/JobScraper6000/app/static/images",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.flask_app.executor&quot;: &quot;Run&quot;,
+    &quot;Python.request_service.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/base.html&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Arseniy/PycharmProjects/JobScraper6000/app/static/images&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Arseniy\PycharmProjects\JobScraper6000\app\static\images" />
@@ -231,6 +238,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1777398891383</updated>
+      <workItem from="1778503350032" duration="171000" />
     </task>
     <task id="LOCAL-00001" summary="add get_info() to routes.py">
       <option name="closed" value="true" />
@@ -352,8 +360,19 @@
       <option name="project" value="LOCAL" />
       <updated>1778501192932</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Add inheritance blocks to base.html, add {% extends &quot;base.html&quot; %} to all other html files">
+      <option name="closed" value="true" />
+      <created>1778501999973</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1778501999973</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -382,6 +401,7 @@
     <MESSAGE value="Replace index.html vs base.html, moved styles.css to new static folder" />
     <MESSAGE value="Add jobscraper_logo.png to new app/static/images folder" />
     <MESSAGE value="Add logo image reference to base.html" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add logo image reference to base.html" />
+    <MESSAGE value="Add inheritance blocks to base.html, add {% extends &quot;base.html&quot; %} to all other html files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add inheritance blocks to base.html, add {% extends &quot;base.html&quot; %} to all other html files" />
   </component>
 </project>
