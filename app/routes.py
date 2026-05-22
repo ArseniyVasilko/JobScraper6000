@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, request
+from flask import render_template, request, session
 from app.constants import ALL_JOB_PAGES
 from app.services import ai_service, parsing_service, request_service
 
@@ -13,7 +13,7 @@ def settings_panel():
 # Then saves results to the db and displays them on results_panel.html
 @app.route('/get_results', methods=['GET'])
 def get_results():
-    filtered_jobs = []
+    filtered_jobs = {}
     for job_board in request.args.getlist('job_boards'):
         print("Requesting information for " + job_board)
         all_job_board_pages = request_service.scan_all_jobs(job_board)
@@ -24,8 +24,9 @@ def get_results():
         filtered_job_links = ai_service.filter_with_ai(all_job_links)
         print(f"Job listings for {job_board} successfully filtered")
 
-        filtered_jobs.append((job_board, filtered_job_links))
+        filtered_jobs[job_board] = filtered_job_links
         print(job_board + "'s jobs appended to results")
+    session["last_search_data"] = filtered_jobs
     # add_jobs_to_db(filtered_jobs)
     # print("All jobs successfully added to database")
     return render_template('results_panel.html', filtered_jobs=filtered_jobs)

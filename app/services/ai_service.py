@@ -29,7 +29,9 @@ def filter_with_ai(all_job_links: list) -> list:
         else:
             failed_evaluations.append(link)
             print("AI failed to give standardised answer after re-evaluation, given response: " + verdict)
-    return [("filtered_links", filtered_links), ("discarded_links", discarded_links), ("failed_evaluations", failed_evaluations)]
+    return {"filtered_links": filtered_links,
+            "discarded_links": discarded_links,
+            "failed_evaluations": failed_evaluations}
 
 
 def upload_file(file_path: str, current_dir: str) -> genai.types.File:
