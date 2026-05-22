@@ -2,6 +2,10 @@ from flask import Flask
 from app.config import Config
 import os
 from google import genai
+from dotenv import load_dotenv
+
+#Loads environment variables
+load_dotenv()
 
 #Flask setup and config
 app = Flask(__name__)
