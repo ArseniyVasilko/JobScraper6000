@@ -6,8 +6,8 @@ from app.constants import SEARCH_INSTRUCTION, CLASSIFY_INSTRUCTION, REVALIDATION
 import mimetypes
 
 def filter_with_ai(all_job_links: list) -> list:
-    filtered_links = []
-    discarded_links = []
+    filtered_jobs = []
+    discarded_jobs = []
     failed_evaluations = []
 
     current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -21,16 +21,16 @@ def filter_with_ai(all_job_links: list) -> list:
             print("AI model provided unstandardised response - attempting to extract meaning")
             verdict = re_evaluate(verdict).strip().lower()
         if verdict == "a":
-            filtered_links.append(link)
+            filtered_jobs.append({"link" : link})
             print("Job passes evaluation")
         elif verdict == "b":
-            discarded_links.append(link)
+            discarded_jobs.append({"link" : link})
             print("Job does not pass evaluation")
         else:
-            failed_evaluations.append(link)
+            failed_evaluations.append({"link" : link})
             print("AI failed to give standardised answer after re-evaluation, given response: " + verdict)
-    return {"filtered_links": filtered_links,
-            "discarded_links": discarded_links,
+    return {"filtered_jobs": filtered_jobs,
+            "discarded_jobs": discarded_jobs,
             "failed_evaluations": failed_evaluations}
 
 
