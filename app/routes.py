@@ -2,6 +2,7 @@ from app import app
 from flask import render_template, request, session
 from app.constants import ALL_JOB_PAGES
 from app.services import ai_service, parsing_service, request_service
+from flask import jsonify
 
 @app.route('/')
 def settings_panel():
@@ -29,5 +30,34 @@ def get_results():
     session["last_search_data"] = filtered_jobs
     # add_jobs_to_db(filtered_jobs)
     # print("All jobs successfully added to database")
-    return render_template('results_panel.html', filtered_jobs=filtered_jobs)
+    return render_template('results_panel.html')
+
+@app.route('/api/get_cards')
+def get_cards():
+    data = session.get('last_search_data', {})
+
+    requested_boards = request.args.getlist('boards')
+    requested_job_types = request.args.getlist('type') or ['filtered_jobs']
+    requested_page = request.args.get('page', 1, type=int)
+    per_page = 16
+
+    selected_boards = {
+        board_name: board_data
+        for board_name, board_data in data.items()
+        if not requested_boards or board_name in requested_boards
+    }
+
+    # Filters job listings based on requested job type (e.g. )
+    cards = []
+    for board, board_data in selected_boards.items():
+        for job_group_type, jobs in board_data.items():
+            if job_group_type in requested_job_types:
+                for job in jobs:
+                    cards.append(job)
+
+    start = (requested_page - 1) * per_page
+    return jsonify({'cards': cards[start:start + per_page], 'has_more': start + per_page < len(cards)})
+
+
+
 
