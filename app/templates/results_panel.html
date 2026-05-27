@@ -1,7 +1,20 @@
 {% extends "base.html" %}
 
-{% block title %}JobScraper6000 - Search results{% endblock %}
+{% block more_scripts %}
+    <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/infinite_scroll.js') }}"></script>
+{% endblock %}
+
+{% block title %}JobScraper6000 - Results{% endblock %}
+
+{% block sidebar %}
+    <div id="sidebar-toggle" class="nav-left">☰</div>
+    <aside class="sidebar"></aside>
+    <div class="sidebar-overlay"></div>
+{% endblock %}
 
 {% block content %}
+    <section class="card-grid">
 
+    </section>
 {% endblock %}
