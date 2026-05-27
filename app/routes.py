@@ -19,10 +19,10 @@ def get_results():
         print("Requesting information for " + job_board)
         all_job_board_pages = request_service.scan_all_jobs(job_board)
         print(f"Http request for {job_board} successfully executed")
-        all_job_links = parsing_service.scan_for_links(all_job_board_pages, job_board)
+        all_job_details = parsing_service.scan_job_details(all_job_board_pages, job_board)
         print(f"Links successfully extracted")
-        print(*all_job_links, sep="\n")
-        filtered_job_links = ai_service.filter_with_ai(all_job_links)
+        print(*all_job_details, sep="\n")
+        filtered_job_links = ai_service.filter_with_ai(all_job_details)
         print(f"Job listings for {job_board} successfully filtered")
 
         filtered_jobs[job_board] = filtered_job_links
