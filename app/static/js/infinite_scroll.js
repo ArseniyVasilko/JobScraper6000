@@ -5,7 +5,7 @@ let exhausted = false;
 
 const filters = {
   boards: [],
-  types: ['discarded_jobs']
+  types: ["filtered_jobs", 'discarded_jobs', 'failed_evaluations']
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -30,11 +30,12 @@ async function addCards() {
     card.className = 'card';
     card.innerHTML = `
                         <div class="card-title"><h2><a href="${job.link}" target="_blank">${job.title}</a></h2></div>
-                        <div class="card-status"><h3>Status: insert_status</h3></div>
+                        <div class="card-status"><h3>Status: ${job.status}</h3></div>
                         <div class="card-list"><ul>
                             <li>Keywords: insert_keywords</li>
                             <li>Published: ${job.date}</li>
                             <li>Location: ${job.location}</li>
+                            <li>Location: ${job.board}</li>
                         </ul></div>
                         <div class="card-button">
                             <button type="button">Details</button>

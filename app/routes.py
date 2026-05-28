@@ -24,12 +24,13 @@ def get_results():
         print(*all_job_details, sep="\n")
         filtered_job_links = ai_service.filter_with_ai(all_job_details)
         print(f"Job listings for {job_board} successfully filtered")
-
+        print(filtered_job_links)
         filtered_jobs[job_board] = filtered_job_links
         print(job_board + "'s jobs appended to results")
     session["last_search_data"] = filtered_jobs
     # add_jobs_to_db(filtered_jobs)
     # print("All jobs successfully added to database")
+    print(session["last_search_data"])
     return render_template('results_panel.html')
 
 @app.route('/api/get_cards')
@@ -53,6 +54,7 @@ def get_cards():
         for job_group_type, jobs in board_data.items():
             if job_group_type in requested_job_types:
                 for job in jobs:
+                    job.update({"board": board, "status": job_group_type})
                     cards.append(job)
 
     start = (requested_page - 1) * per_page
