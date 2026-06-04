@@ -1,12 +1,19 @@
-from flask import Flask
+from flask import Flask, session
+from flask_session import Session
 from app.config import Config
 import os
 from google import genai
+from dotenv import load_dotenv
+
+#Loads environment variables
+load_dotenv()
 
 #Flask setup and config
 app = Flask(__name__)
 app.config.from_object(Config)
 print("config updated")
+
+Session(app)
 
 #Google genai setup and config
 MODEL = "gemini-2.5-flash-lite"

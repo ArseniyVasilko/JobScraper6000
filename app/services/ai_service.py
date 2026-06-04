@@ -5,31 +5,33 @@ import time
 from app.constants import SEARCH_INSTRUCTION, CLASSIFY_INSTRUCTION, REVALIDATION_INSTRUCTION
 import mimetypes
 
-def filter_with_ai(all_job_links: list) -> list:
-    filtered_links = []
-    discarded_links = []
+def filter_with_ai(all_job_details: list) -> list:
+    filtered_jobs = []
+    discarded_jobs = []
     failed_evaluations = []
 
     current_dir = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(current_dir, "..", "resources", "cv", "CVForGemini.pdf")
     uploaded_file = upload_file(file_path, current_dir)
 
-    for link in all_job_links:
-        job_summary = search_summarise(link, uploaded_file)
+    for job in all_job_details:
+        job_summary = search_summarise(job["link"], uploaded_file)
         verdict = classify(job_summary).strip().lower()
         if verdict != "a" and verdict != "b":
             print("AI model provided unstandardised response - attempting to extract meaning")
             verdict = re_evaluate(verdict).strip().lower()
         if verdict == "a":
-            filtered_links.append(link)
+            filtered_jobs.append(job)
             print("Job passes evaluation")
         elif verdict == "b":
-            discarded_links.append(link)
+            discarded_jobs.append(job)
             print("Job does not pass evaluation")
         else:
-            failed_evaluations.append(link)
+            failed_evaluations.append(job)
             print("AI failed to give standardised answer after re-evaluation, given response: " + verdict)
-    return [("filtered_links", filtered_links), ("discarded_links", discarded_links), ("failed_evaluations", failed_evaluations)]
+    return {"filtered_jobs": filtered_jobs,
+            "discarded_jobs": discarded_jobs,
+            "failed_evaluations": failed_evaluations}
 
 
 def upload_file(file_path: str, current_dir: str) -> genai.types.File:
@@ -64,14 +66,14 @@ def search_summarise(link: str, uploaded_file: genai.types.File) -> str:
             system_instruction=SEARCH_INSTRUCTION,
         )
     )
-    print("Job AI summary: " + response.text)
+    print("Job AI summary: " + str(response.text))
     return response.text
 
 
 def classify(summary: str) -> str:
     response = client.models.generate_content(
         model="models/gemini-2.5-flash-lite",
-        contents=["Candidate's structured evaluation: " + summary],
+        contents=["Candidate's structured evaluation: " + str(summary)],
         config=genai.types.GenerateContentConfig(
             temperature=0.0,
             system_instruction=CLASSIFY_INSTRUCTION,
@@ -83,7 +85,7 @@ def classify(summary: str) -> str:
 def re_evaluate(verdict: str) -> str:
     response = client.models.generate_content(
         model="models/gemini-2.5-flash-lite",
-        contents=["Previous AI response: " + verdict],
+        contents=["Previous AI response: " + str(verdict)],
         config=genai.types.GenerateContentConfig(
             temperature=0.0,
             system_instruction=REVALIDATION_INSTRUCTION

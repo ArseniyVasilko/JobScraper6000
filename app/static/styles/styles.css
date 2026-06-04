@@ -7,23 +7,12 @@
     font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
-.layout {
-  display: grid;
-  grid-template-columns: 250px 1fr;
-  height: 100vh;
-  transition: grid-template-columns 0.3s ease;
-}
-
-body {
-    margin: 0;
-}
-
 header {
     grid-column: span 2;
 }
 
-main {
-    grid-column: span 2;
+body {
+    margin: 0;
 }
 
 .navbar {
@@ -63,10 +52,14 @@ main {
     justify-self: start;
 }
 
-#arrow_back {
-    display: block;
-    height: 40px;
-    width: auto;
+.nav-center {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-right {
+    justify-self: end;
 }
 
 #logo {
@@ -74,6 +67,16 @@ main {
     height: 50px;
     width: auto;
     transition: height 0.5s ease, transform 0.5s ease;
+}
+
+#logo:hover {
+    height: 60px;
+    cursor: pointer;
+}
+
+#logo:active {
+    height: 60px;
+    transform: rotate(360deg);
 }
 
 #settings {
@@ -91,31 +94,309 @@ main {
     transform: rotate(90deg)
 }
 
-.nav-center {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
 .apptitle {
     display: inline-block;
     margin: auto;
     vertical-align: bottom;
 }
 
-#logo:hover {
-    height: 60px;
+main {
+    grid-column: span 2;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;        /* center items horizontally */
+    justify-content: flex-start; /* fill from top */
+    position: fixed;
+    top: 0px;
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+    width: 120px;
+    background: linear-gradient(#b1a4ed, var(--primary-color));
+    border-right: 0.5px solid rgba(120, 100, 220, 0.25);
+    border-radius: 0px 5px 5px 0px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    overflow: visible;
+}
+
+.sidebar-filters-flex{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center
+}
+
+.filter-group-flex{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center
+}
+
+.filter-group-flex h3 {
+    text-align: center;
+    margin: 0;
+    font-size: 0.8rem;
+}
+
+.filter-toggle-btn {
+  width: 70px;
+  padding: 15px 10px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: visible;          /* dot escapes the bounds */
+  transition: background 0.15s, box-shadow 0.15s;
+  box-shadow: none;
+  transition: background 0.15s, box-shadow 0.15s, border-color 0.15s, scale 0.15s;
+}
+
+.filter-toggle-btn:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.filter-toggle-btn img {
+  width: 50px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.filter-toggle-btn.on {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.3),
+    0 4px 16px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.3);
+  scale: 1.08;
+}
+
+.filter-toggle-btn:active {
+  scale: 0.95;
+  box-shadow:
+    inset 0 3px 8px rgba(0, 0, 0, 0.4);
+  transition: scale 0.08s ease, box-shadow 0.08s ease;
+}
+
+
+.filter-toggle-btn::after {
+  display: block;
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid #26215C;
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  z-index: 9;
+}
+
+.filter-toggle-btn.on::after {
+  display: block;
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: yellow;
+  background: radial-gradient(circle, #fff7a1 0%, #ffe033 40%, #ffaa00 100%);
+  border: 2px solid #26215C;
+  box-shadow:
+    0 0 4px 2px rgba(255, 220, 50, 0.9),
+    0 0 10px 4px rgba(255, 180, 0, 0.6),
+    0 0 20px 8px rgba(255, 140, 0, 0.3);
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  z-index: 9;
+}
+
+slider-container {
+  width: 120px;
+  padding: 8px; /* Safe breathing room */
+  box-sizing: border-box; /* Includes padding in the 120px total width */
+  font-family: sans-serif;
+}
+
+/* Ensure the text label stays small and compact */
+.slider-container label,
+.slider-container p {
+  font-size: 12px;
+  margin: 2px auto 2px auto;
+  display: block;
+  text-align: center;
+}
+
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 10px auto 10px auto;
+  width: 90%;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 5px;
+  display: block;
+}
+
+/* Draggable thumb styling */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px; /* Shrunk from 20px so it doesn't get clipped at edges */
+  height: 14px;
+  background: #007bff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: #007bff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+.sidebar.open{ transform: translateX(0); }
+
+.sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9;
+    background: rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.sidebar-overlay.open {
+    visibility: visible;
+    opacity: 1;
+}
+
+#sidebar-toggle{
     cursor: pointer;
+    user-select: none;
+    color: var(--secondary-color);
 }
 
-#logo:active {
-    height: 60px;
-    transform: rotate(360deg);
-
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
+    gap: 30px;
+    padding: 12px;
 }
 
-.nav-right {
-    justify-self: end;
+
+@property --mix-start {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 70%;
+}
+
+@property --mix-end {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 95%;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    aspect-ratio: 9 / 14;
+    width: 100%;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 0rem 0.5rem 1rem 0.5rem;
+    background: linear-gradient(
+    to top right,
+    color-mix(in srgb, var(--primary-color), #fff var(--mix-start)),
+    color-mix(in srgb, var(--primary-color), #fff var(--mix-end))
+  );
+    transition: --mix-start 0.2s ease-in-out, --mix-end 0.2s ease-in-out, scale 0.2s ease-in-out;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.card:hover {
+  --mix-start: 50%;
+  --mix-end: 80%;
+  scale: 1.05;
+}
+
+.card h2 {
+    font-size: 1.25rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+}
+
+.card h3 {
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.card li {
+    font-size: 1rem;
+}
+
+.card .card-title {
+    flex: 2;
+}
+
+.card .card-status {
+    flex: 1;
+}
+
+.card .card-list {
+    flex: 4;
+}
+
+.card ul {
+    padding-left: 1rem;
+    margin: 0;
+}
+
+li:not(:last-child) {
+  margin-bottom: 3px;
+}
+
+.card .card-button {
+    flex: 2;
+    text-align: center;
+    padding: 10px 0px 0px 0px;
+}
+
+.card button {
+    font-size: 1.2rem;
+    padding: 8px 30px 8px 30px;
+    border-radius: 15px;
+    transition: transform 0.2s ease-in-out;
+    background-color: var(--tertiary-color)
+}
+
+.card button:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+    background-color: color-mix(in srgb, var(--tertiary-color), orange 70%);
 }
 
 
