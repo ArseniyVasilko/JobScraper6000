@@ -3,7 +3,7 @@ let page = 1;
 let loading = false;
 let exhausted = false;
 
-const filters = {
+export const filters = {
   boards: [],
   types: ["filtered_jobs", 'discarded_jobs', 'failed_evaluations']
 };
@@ -35,7 +35,7 @@ async function addCards() {
                             <li>Keywords: insert_keywords</li>
                             <li>Published: ${job.date}</li>
                             <li>Location: ${job.location}</li>
-                            <li>Location: ${job.board}</li>
+                            <li>Job Board: ${job.board}</li>
                         </ul></div>
                         <div class="card-button">
                             <button type="button">Details</button>
@@ -62,7 +62,7 @@ function observeLast() {
   if (cards.length) observer.observe(cards[cards.length - 1]);
 }
 
-function applyFilter(newFilters) {
+export function applyFilter(newFilters) {
   Object.assign(filters, newFilters);
   page = 1;
   exhausted = false;

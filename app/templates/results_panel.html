@@ -1,15 +1,39 @@
 {% extends "base.html" %}
 
 {% block more_scripts %}
-    <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/infinite_scroll.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/sidebar.js') }}" type="module"/></script>
+    <script src="{{ url_for('static', filename='js/result_cards.js') }}" type="module"/></script>
 {% endblock %}
 
 {% block title %}JobScraper6000 - Results{% endblock %}
 
 {% block sidebar %}
     <div id="sidebar-toggle" class="nav-left">☰</div>
-    <aside class="sidebar"></aside>
+    <aside class="sidebar">
+        <div class="sidebar-filters-flex">
+            <h2>Filters</h2>
+            <div class="filter-group-flex">
+                <h3>Filter by board:</h3>
+                <button class="filter-toggle-btn" id="duunitori-btn">
+                    <img src="{{ url_for('static', filename='images/duunitori_logo.png') }}"  alt="Filter: toggle Duunitori">
+                </button>
+                <button class="filter-toggle-btn" id="linkedin-btn">
+                    <img src="{{ url_for('static', filename='images/linkedin_logo.png') }}"  alt="Filter: toggle LinkedIn">
+                </button>
+                <button class="filter-toggle-btn" id="totaljobs-btn">
+                    <img src="{{ url_for('static', filename='images/totaljobs_logo.png') }}"  alt="Filter: toggle TotalJobs">
+                </button>
+            </div>
+            <div class="filter-group-flex">
+                <h3>Filter by score:</h3>
+                <div class="slider-container">
+                    <label for="minScore">Min score: <span id="minScoreDisplay">0</span></label>
+                    <input type="range" id="minScore" min="0" max="100" value="0" step="1">
+                </div>
+            </div>
+        </div>
+
+    </aside>
     <div class="sidebar-overlay"></div>
 {% endblock %}
 

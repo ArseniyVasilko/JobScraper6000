@@ -34,4 +34,4 @@ def scan_duunitori(all_job_board_pages):
 
         all_jobs.extend(page_jobs)
 
-    return all_jobs[:4]
+    return all_jobs
