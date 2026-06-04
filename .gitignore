@@ -1,0 +1,4 @@
+app/resources/cv/*
+!app/resources/cv/.gitkeep
+.idea/*
+.env/*
