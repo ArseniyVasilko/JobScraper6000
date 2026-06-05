@@ -7,8 +7,6 @@ import mimetypes
 
 def filter_with_ai(all_job_details: list) -> list:
     filtered_jobs = []
-    discarded_jobs = []
-    failed_evaluations = []
 
     current_dir = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(current_dir, "..", "resources", "cv", "CVForGemini.pdf")
@@ -17,24 +15,22 @@ def filter_with_ai(all_job_details: list) -> list:
     for job in all_job_details:
         job_summary = search_summarise(job["link"], uploaded_file)
         if job_summary == "Error 503: Gemini server busy.":
-            failed_evaluations.append(job)
-            pass
-        verdict = classify(job_summary).strip().lower()
-        if verdict != "a" and verdict != "b":
-            print("AI model provided unstandardised response - attempting to extract meaning")
-            verdict = re_evaluate(verdict).strip().lower()
-        if verdict == "a":
+            job["score"] = -1
             filtered_jobs.append(job)
-            print("Job passes evaluation")
-        elif verdict == "b":
-            discarded_jobs.append(job)
-            print("Job does not pass evaluation")
+            pass
+        verdict = re_evaluate(job_summary).strip()
+        if not verdict.isdigit() or not (0 <= int(verdict) <= 100):
+            print("AI model provided unstandardised response - attempting to extract meaning")
+            verdict = re_evaluate(verdict).strip()
+        if 0 <= int(verdict) <= 100:
+            job["score"] = int(verdict)
+            filtered_jobs.append(job)
+            print("Job evaluation score: " + str(job["score"]))
         else:
-            failed_evaluations.append(job)
             print("AI failed to give standardised answer after re-evaluation, given response: " + verdict)
-    return {"filtered_jobs": filtered_jobs,
-            "discarded_jobs": discarded_jobs,
-            "failed_evaluations": failed_evaluations}
+            job["score"] = -1
+            filtered_jobs.append(job)
+    return filtered_jobs
 
 
 def upload_file(file_path: str, current_dir: str) -> genai.types.File:
