@@ -1,6 +1,5 @@
 from app import app
 from flask import render_template, request, session
-from app.constants import ALL_JOB_PAGES
 from app.services import ai_service, parsing_service, request_service
 from flask import jsonify
 

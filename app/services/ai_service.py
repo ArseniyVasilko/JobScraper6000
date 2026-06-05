@@ -2,7 +2,7 @@ from google import genai
 from app.__init__ import client
 import os
 import time
-from app.constants import SEARCH_INSTRUCTION, CLASSIFY_INSTRUCTION, REVALIDATION_INSTRUCTION
+from app.constants import SEARCH_INSTRUCTION, CLASSIFY_INSTRUCTION, REVALIDATION_INSTRUCTION, GENAI_REQUEST_RETRIES
 import mimetypes
 
 def filter_with_ai(all_job_details: list) -> list:
@@ -64,8 +64,8 @@ def search_summarise(link: str, uploaded_file: genai.types.File) -> str:
     print("Evaluating link: ", link)
     response = ErrorResponse()
 
-    # Retries to get response from Genai 10 times before defaulting to response above
-    for _ in range(10):
+    # Retries to get response from Genai X times before defaulting to response above
+    for _ in range(GENAI_REQUEST_RETRIES):
         try:
             response = client.models.generate_content(
                 model="models/gemini-2.5-flash-lite",
@@ -88,8 +88,8 @@ def search_summarise(link: str, uploaded_file: genai.types.File) -> str:
 def classify(summary: str) -> str:
     response = ErrorResponse()
 
-    # Retries to get response from Genai 10 times before defaulting to response above
-    for _ in range(10):
+    # Retries to get response from Genai x times before defaulting to response above
+    for _ in range(GENAI_REQUEST_RETRIES):
         try:
             response = client.models.generate_content(
                 model="models/gemini-2.5-flash-lite",
@@ -108,7 +108,9 @@ def classify(summary: str) -> str:
 
 def re_evaluate(verdict: str) -> str:
     response = ErrorResponse()
-    for _ in range(10):
+
+    # Retries to get response from Genai x times before defaulting to response above
+    for _ in range(GENAI_REQUEST_RETRIES):
         try:
             response = client.models.generate_content(
                 model="models/gemini-2.5-flash-lite",

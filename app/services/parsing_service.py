@@ -1,5 +1,5 @@
 import bs4
-from attr.filters import exclude
+from app.constants import MAX_JOBS_PARSED_DUUNITORI
 
 
 def scan_job_details(all_job_board_pages: list, job_board: str) -> list:
@@ -34,4 +34,4 @@ def scan_duunitori(all_job_board_pages):
 
         all_jobs.extend(page_jobs)
 
-    return all_jobs
+    return all_jobs[:MAX_JOBS_PARSED_DUUNITORI] if MAX_JOBS_PARSED_DUUNITORI else all_jobs

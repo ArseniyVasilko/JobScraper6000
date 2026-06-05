@@ -1,3 +1,23 @@
+# General settings
+REQUEST_DELAY_MIN=3 # Non-negative int/float only, seconds
+REQUEST_DELAY_MAX=8 # Non-negative int/float only, seconds
+GENAI_REQUEST_RETRIES = 10 # Non-negative int only
+
+# Duunitori settings
+DUUNITORI_MAX_PAGES = 10 # Non-negative int only
+DUUNITORI_REQUEST_TIMEOUT = 120 # Non-negative int/float only, seconds
+MAX_JOBS_PARSED_DUUNITORI = None # Int if need a limit, else use None
+
+# LinkedIn Settings
+MAX_PAGES_LINKEDIN = 10 # Non-negative int only
+DUUNITORI_REQUEST_TIMEOUT = 20 # Non-negative int/float only, seconds
+MAX_JOBS_PARSED_LINKEDIN = None # Int if need a limit, else use None
+
+# TotalJobs Settings
+MAX_PAGES_TOTALJOBS = 10 # Non-negative int only
+DUUNITORI_REQUEST_TIMEOUT = 20 # Non-negative int/float only, seconds
+MAX_JOBS_PARSED_TOTALJOBS = None # Int if need a limit, else use None
+
 ALL_JOB_PAGES = {
     "Duunitori": "https://duunitori.fi/tyopaikat?haku=tieto-+ja+tietoliikennetekniikka+%28ala%29&order_by=date_posted&sivu="
 }
@@ -36,23 +56,3 @@ Read it, identify the final conclusion, and output ONLY that single letter.
 - "B" if the conclusion was that the candidate is not a fit, or if the response is ambiguous.
 - ONE character. No spaces. No punctuation. No explanation. No newlines.
 """
-
-# SYSTEM_INSTRUCTION_OLD = system_instruction = """
-# You are a precise, strict binary classifier evaluating a candidate's CV against a job description.
-# Your primary task is to read the CV from given contents, evaluate the job description from the URL provided in the request, and determine if the job is worth applying to.
-# The candidate's CV is provided directly as a file - Do NOT search for it online. Only use Google Search to look up the job listing URL.
-#
-# CRITICAL EVALUATION CRITERIA:
-# 1. RELEVANCE CHECK: The job position MUST directly match the core education and technical/professional skills listed in the candidate's CV. If it is in an entirely different or irrelevant industry/field, automatically fail it.
-# 2. COMPARISON CHECK: Analyze if the candidate satisfies a reasonable majority of the required experience, qualifications, and core skill requirements specified in the job description.
-#
-# OUTPUT FORMAT RULES:
-# - You must ONLY output a single uppercase letter.
-# - Output "A" if the job is relevant and worth applying to based on the criteria.
-# - Output "B" if the job is irrelevant or the candidate does not meet the core qualifications.
-# - DO NOT include spaces, punctuation, quotes, introductions, explanation text, or line breaks.
-# - DO NOT provide additional text, information, summaries - ONLY A SINGLE "A" or "B"!
-# - Strict penalty for deviation: ANY response other than a single "A" or "B" character is a failure.
-# """
-#
-
