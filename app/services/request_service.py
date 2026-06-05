@@ -1,5 +1,5 @@
 import requests
-from app.constants import ALL_JOB_PAGES
+from app.constants import ALL_JOB_PAGES, DUUNITORI_MAX_PAGES, DUUNITORI_REQUEST_TIMEOUT, REQUEST_DELAY_MIN, REQUEST_DELAY_MAX
 import time
 import random
 
@@ -16,9 +16,9 @@ def scan_all_jobs(job_board: str) -> list:
 #Scans 10 first pages of Duunitori IT industry job listings
 def scan_duunitori() -> list:
     all_job_bodies = []
-    for i in range(1, 11):
-        response = requests.get(ALL_JOB_PAGES["Duunitori"] + str(i), headers=HEADERS, timeout=20)
+    for i in range(1, DUUNITORI_MAX_PAGES + 1):
+        response = requests.get(ALL_JOB_PAGES["Duunitori"] + str(i), headers=HEADERS, timeout=DUUNITORI_REQUEST_TIMEOUT)
         response.raise_for_status()
         all_job_bodies.append(response.text)
-        time.sleep(random.uniform(3, 8))
+        time.sleep(random.uniform(REQUEST_DELAY_MIN, REQUEST_DELAY_MAX))
     return all_job_bodies
