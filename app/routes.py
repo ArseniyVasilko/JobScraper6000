@@ -21,10 +21,10 @@ def get_results():
         all_job_details = parsing_service.scan_job_details(all_job_board_pages, job_board)
         print(f"Links successfully extracted")
         print(*all_job_details, sep="\n")
-        filtered_job_links = ai_service.filter_with_ai(all_job_details)
+        filtered_job_details = ai_service.filter_with_ai(all_job_details)
         print(f"Job listings for {job_board} successfully filtered")
-        print(filtered_job_links)
-        filtered_jobs[job_board] = filtered_job_links
+        print(filtered_job_details)
+        filtered_jobs[job_board] = filtered_job_details
         print(job_board + "'s jobs appended to results")
     session["last_search_data"] = filtered_jobs
     # add_jobs_to_db(filtered_jobs)
@@ -37,9 +37,10 @@ def get_cards():
     data = session.get('last_search_data', {})
 
     requested_boards = request.args.getlist('boards')
-    requested_job_types = request.args.getlist('type') or ['filtered_jobs']
+    minimum_score = request.args.get('score', 50, type=int)
     requested_page = request.args.get('page', 1, type=int)
     per_page = 16
+    print("minimum score requested: " + str(minimum_score))
 
     selected_boards = {
         board_name: board_data
@@ -47,16 +48,17 @@ def get_cards():
         if not requested_boards or board_name in requested_boards
     }
 
-    # Filters job listings based on requested job type (e.g. )
+    # Filters job listings based on requested minimum score
     cards = []
     for board, board_data in selected_boards.items():
-        for job_group_type, jobs in board_data.items():
-            if job_group_type in requested_job_types:
-                for job in jobs:
-                    job.update({"board": board, "status": job_group_type})
-                    cards.append(job)
+        for job in board_data:
+            print("job: " + str(job))
+            if int(job["score"]) >= int(minimum_score):
+                job["board"] = board
+                cards.append(job)
 
     start = (requested_page - 1) * per_page
+    print("sending cards to page:", {'cards': cards[start:start + per_page], 'has_more': start + per_page < len(cards)})
     return jsonify({'cards': cards[start:start + per_page], 'has_more': start + per_page < len(cards)})
 
 

@@ -5,7 +5,7 @@ let exhausted = false;
 
 export const filters = {
   boards: [],
-  types: ["filtered_jobs", 'discarded_jobs', 'failed_evaluations']
+  score: 0
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,7 +20,7 @@ async function addCards() {
 
   const params = new URLSearchParams({ page });
   filters.boards.forEach(b => params.append('boards', b));
-  filters.types.forEach(t => params.append('type', t));
+  params.set('score', filters.score);
 
   const res = await fetch(`/api/get_cards?${params}`);
   const data = await res.json();
@@ -30,7 +30,7 @@ async function addCards() {
     card.className = 'card';
     card.innerHTML = `
                         <div class="card-title"><h2><a href="${job.link}" target="_blank">${job.title}</a></h2></div>
-                        <div class="card-status"><h3>Status: ${job.status}</h3></div>
+                        <div class="card-status"><h3>Score: ${job.score}</h3></div>
                         <div class="card-list"><ul>
                             <li>Keywords: insert_keywords</li>
                             <li>Published: ${job.date}</li>

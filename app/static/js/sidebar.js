@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const minScoreDisplay = document.getElementById('minScoreDisplay');
 
     minScore.addEventListener('input', () => {
-        minScoreDisplay.textContent = minScore.value;
-      });
+    minScoreDisplay.textContent = minScore.value;
+    applyFilter({ score: minScore.value });
+    });
 });
