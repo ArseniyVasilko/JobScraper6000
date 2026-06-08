@@ -23,15 +23,16 @@ ALL_JOB_PAGES = {
 }
 
 SEARCH_INSTRUCTION = """
-You will be given a job listing URL and a candidate's CV.
-Retrieve the job listing from the URL using Google Search.
+You will be given a job description and a candidate's CV.
 
-Then produce a structured evaluation with the following sections:
+Produce a structured evaluation with the following sections:
 
 ROLE: One line — job title, company, and industry.
-REQUIREMENTS: Key qualifications, skills, and experience the job demands.
-CANDIDATE FIT: For each requirement, explicitly state whether the candidate meets it, partially meets it, or lacks it entirely. Be specific and critical — do not be generous.
-VERDICT: A short concluding sentence on overall suitability. Be direct.
+REQUIREMENTS: Extract and list only the qualifications, skills, and experience explicitly stated or directly implied by the job description. Do not add, infer, or invent requirements that are not grounded in the job description text itself.
+CANDIDATE FIT: For each requirement listed above, explicitly state whether the candidate MEETS, PARTIALLY MEETS, or LACKS it. Cite specific evidence from the CV. If evidence is absent, mark as LACKS.
+VERDICT: A single concluding sentence summarising overall suitability. Be direct and unambiguous.
+
+Keep the total response under 1000 words. Be concise throughout. Do not invent or assume any information not present in the provided job description or CV.
 """
 
 CLASSIFY_INSTRUCTION = """You are a strict numeric scorer. You will be given a structured evaluation of a candidate against a job listing.

@@ -1,5 +1,7 @@
 import bs4
 from app.constants import MAX_JOBS_PARSED_DUUNITORI
+from concurrent import futures
+import app.services.request_service as request_service
 
 
 def scan_job_details(all_job_board_pages: list, job_board: str) -> list:
@@ -34,4 +36,15 @@ def scan_duunitori(all_job_board_pages):
 
         all_jobs.extend(page_jobs)
 
-    return all_jobs[:MAX_JOBS_PARSED_DUUNITORI] if MAX_JOBS_PARSED_DUUNITORI else all_jobs
+        if MAX_JOBS_PARSED_DUUNITORI:
+            all_jobs = all_jobs[:MAX_JOBS_PARSED_DUUNITORI]
+
+        with futures.ThreadPoolExecutor(max_workers=4) as executor:
+            def fetch_and_assign(job):
+                job["text"] = (bs4
+                                .BeautifulSoup(request_service.fetch_page(job["link"]), 'html.parser')
+                                .find("div", class_="description--jobentry")
+                                .get_text(separator=" ", strip=True))
+                return job
+            all_jobs = list(executor.map(fetch_and_assign, all_jobs))
+    return all_jobs

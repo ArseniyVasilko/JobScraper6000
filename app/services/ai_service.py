@@ -14,7 +14,8 @@ def filter_with_ai(all_job_details: list) -> list:
     uploaded_file = upload_file(file_path, current_dir)
 
     for job in all_job_details:
-        job_summary = search_summarise(job["link"], uploaded_file)
+        print("Evaluating link: ", job["link"])
+        job_summary = search_summarise(job["text"], uploaded_file)
         if job_summary == "Error 503: Gemini server busy.":
             job["score"] = -1
             filtered_jobs.append(job)
@@ -77,18 +78,16 @@ def _generate_content(*args, **kwargs):
     return client.models.generate_content(*args, **kwargs)
 
 
-def search_summarise(link: str, uploaded_file: genai.types.File) -> str:
-    print("Evaluating link: ", link)
+def search_summarise(description: str, uploaded_file: genai.types.File) -> str:
     response = _generate_content(
         model="models/gemini-2.5-flash-lite",
-        contents=[uploaded_file, f"\nJob listing link: {link}"],
+        contents=["CANDIDATE'S CV:", uploaded_file, f"\nJOB DESCRIPTION: {description}"],
         config=genai.types.GenerateContentConfig(
             temperature=0.0,
-            # Enables Google Search to look up the URL
-            tools=[genai.types.Tool(google_search=genai.types.GoogleSearch())],
             system_instruction=SEARCH_INSTRUCTION,
         )
     )
+    print("Evaluating summary: ", response.text)
     return response.text
 
 
