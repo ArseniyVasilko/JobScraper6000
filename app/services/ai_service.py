@@ -4,6 +4,7 @@ import os
 import time
 from app.constants import SEARCH_INSTRUCTION, CLASSIFY_INSTRUCTION, REVALIDATION_INSTRUCTION, GENAI_REQUEST_RETRIES
 import mimetypes
+import functools
 
 def filter_with_ai(all_job_details: list) -> list:
     filtered_jobs = []
@@ -56,70 +57,60 @@ def upload_file(file_path: str, current_dir: str) -> genai.types.File:
 class ErrorResponse:
     text = "Error 503: Gemini server busy."
 
+# Decorator shortcut to retry X denied AI server requests
+def retry_on_server_error(retries: int = GENAI_REQUEST_RETRIES):
+    """Retries the wrapped function on genai.errors.ServerError, returns None after all retries exhausted."""
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            for _ in range(retries):
+                try:
+                    return func(*args, **kwargs)
+                except genai.errors.ServerError:
+                    print("Genai server error - retrying...")
+            return ErrorResponse
+        return wrapper
+    return decorator
+
+@retry_on_server_error()
+def _generate_content(*args, **kwargs):
+    return client.models.generate_content(*args, **kwargs)
+
+
 def search_summarise(link: str, uploaded_file: genai.types.File) -> str:
     print("Evaluating link: ", link)
-    response = ErrorResponse()
-
-    # Retries to get response from Genai X times before defaulting to response above
-    for _ in range(GENAI_REQUEST_RETRIES):
-        try:
-            response = client.models.generate_content(
-                model="models/gemini-2.5-flash-lite",
-                contents=[uploaded_file, f"\nJob listing link: {link}"],
-                config=genai.types.GenerateContentConfig(
-                    temperature=0.0,
-                    # Enables Google Search to look up the URL
-                    tools=[genai.types.Tool(google_search=genai.types.GoogleSearch())],
-                    system_instruction=SEARCH_INSTRUCTION,
-                )
-            )
-            break
-        except genai.errors.ServerError:
-            print("Genai server error - retrying...")
-            pass
-    print("Job AI summary: " + str(response.text))
+    response = _generate_content(
+        model="models/gemini-2.5-flash-lite",
+        contents=[uploaded_file, f"\nJob listing link: {link}"],
+        config=genai.types.GenerateContentConfig(
+            temperature=0.0,
+            # Enables Google Search to look up the URL
+            tools=[genai.types.Tool(google_search=genai.types.GoogleSearch())],
+            system_instruction=SEARCH_INSTRUCTION,
+        )
+    )
     return response.text
 
 
 def classify(summary: str) -> str:
-    response = ErrorResponse()
-
-    # Retries to get response from Genai x times before defaulting to response above
-    for _ in range(GENAI_REQUEST_RETRIES):
-        try:
-            response = client.models.generate_content(
-                model="models/gemini-2.5-flash-lite",
-                contents=["Candidate's structured evaluation: " + str(summary)],
-                config=genai.types.GenerateContentConfig(
-                    temperature=0.0,
-                    system_instruction=CLASSIFY_INSTRUCTION,
-                )
-            )
-            break
-        except genai.errors.ServerError:
-            print("Genai server error - retrying...")
-            pass
+    response = _generate_content(
+        model="models/gemini-2.5-flash-lite",
+        contents=["Candidate's structured evaluation: " + str(summary)],
+        config=genai.types.GenerateContentConfig(
+            temperature=0.0,
+            system_instruction=CLASSIFY_INSTRUCTION,
+        )
+    )
     return response.text
 
 
 def re_evaluate(verdict: str) -> str:
-    response = ErrorResponse()
-
-    # Retries to get response from Genai x times before defaulting to response above
-    for _ in range(GENAI_REQUEST_RETRIES):
-        try:
-            response = client.models.generate_content(
-                model="models/gemini-2.5-flash-lite",
-                contents=["Previous AI response: " + str(verdict)],
-                config=genai.types.GenerateContentConfig(
-                    temperature=0.0,
-                    system_instruction=REVALIDATION_INSTRUCTION
-                )
-            )
-        except genai.errors.ServerError:
-            print("Genai server error - retrying...")
-            pass
+    response = _generate_content(
+        model="models/gemini-2.5-flash-lite",
+        contents=["Previous AI response: " + str(verdict)],
+        config=genai.types.GenerateContentConfig(
+            temperature=0.0,
+            system_instruction=REVALIDATION_INSTRUCTION
+        )
+    )
     return response.text
-
-
-
