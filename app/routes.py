@@ -15,17 +15,25 @@ def settings_panel():
 def get_results():
     filtered_jobs = {}
     for job_board in request.args.getlist('job_boards'):
+
         print("Requesting information for " + job_board)
         all_job_board_pages = request_service.scan_all_jobs(job_board)
         print(f"Http request for {job_board} successfully executed")
+
         all_job_details = parsing_service.scan_job_details(all_job_board_pages, job_board)
         print(f"Links successfully extracted")
+
+
+
         print(*all_job_details, sep="\n")
+
         filtered_job_details = ai_service.filter_with_ai(all_job_details)
         print(f"Job listings for {job_board} successfully filtered")
         print(filtered_job_details)
+
         filtered_jobs[job_board] = filtered_job_details
         print(job_board + "'s jobs appended to results")
+
     session["last_search_data"] = filtered_jobs
     # add_jobs_to_db(filtered_jobs)
     # print("All jobs successfully added to database")
@@ -60,7 +68,3 @@ def get_cards():
     start = (requested_page - 1) * per_page
     print("sending cards to page:", {'cards': cards[start:start + per_page], 'has_more': start + per_page < len(cards)})
     return jsonify({'cards': cards[start:start + per_page], 'has_more': start + per_page < len(cards)})
-
-
-
-
