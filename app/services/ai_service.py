@@ -22,7 +22,7 @@ def filter_with_ai(all_job_details: list) -> list:
             filtered_jobs.append(job)
             pass
         verdict = re_evaluate(job_summary).strip()
-        job["keywords"] = generate_keywords(job_summary)
+        job["keywords"] = [word.capitalize() for word in generate_keywords(job_summary)]
         if not verdict.isdigit() or not (0 <= int(verdict) <= 100):
             print("AI model provided unstandardised response - attempting to extract meaning")
             verdict = re_evaluate(verdict).strip()
