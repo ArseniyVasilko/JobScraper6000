@@ -5,6 +5,7 @@ import time
 from app.constants import *
 import mimetypes
 import functools
+import json
 
 def filter_with_ai(all_job_details: list) -> list:
     filtered_jobs = []
@@ -21,6 +22,7 @@ def filter_with_ai(all_job_details: list) -> list:
             filtered_jobs.append(job)
             pass
         verdict = re_evaluate(job_summary).strip()
+        job["keywords"] = [word.capitalize() for word in generate_keywords(job_summary)]
         if not verdict.isdigit() or not (0 <= int(verdict) <= 100):
             print("AI model provided unstandardised response - attempting to extract meaning")
             verdict = re_evaluate(verdict).strip()
@@ -53,6 +55,7 @@ def upload_file(file_path: str, current_dir: str) -> genai.types.File:
     if uploaded_file.state.name == "FAILED":
         raise ValueError(f"File processing failed: {uploaded_file.error.message}")
     return uploaded_file
+
 
 # Dummy class for replacing response.text below if genai fails to provide a response
 class ErrorResponse:
@@ -100,6 +103,34 @@ def classify(summary: str) -> str:
         )
     )
     return response.text
+
+
+def generate_keywords(summary: str) -> str:
+    keyword_schema = genai.types.Schema(
+        type=genai.types.Type.OBJECT,
+        properties={
+            "keywords": genai.types.Schema(
+                type=genai.types.Type.ARRAY,
+                items=genai.types.Schema(type=genai.types.Type.STRING),
+                min_items=3,
+                max_items=3,
+            )
+        },
+        required=["keywords"],
+    )
+
+    response = _generate_content(
+        model="models/gemini-2.5-flash-lite",
+        contents=["Job listing: " + str(summary)],
+        config=genai.types.GenerateContentConfig(
+            temperature=0.0,
+            system_instruction=KEYWORD_INSTRUCTION,
+            response_mime_type="application/json",
+            response_schema=keyword_schema,
+        )
+    )
+    keywords = json.loads(response.text)["keywords"]
+    return keywords
 
 
 def re_evaluate(verdict: str) -> str:

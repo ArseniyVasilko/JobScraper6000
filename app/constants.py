@@ -54,6 +54,16 @@ Rules:
 - No spaces, punctuation, explanation, or newlines.
 - Any response other than a bare integer in range [0, 100] is a failure."""
 
+KEYWORD_INSTRUCTION = """You are a concise job listing summarizer. You will be given a job listing.
+Read it and output exactly 3 keywords that describe the role at a glance.
+
+Rules:
+- Output ONLY 3 keywords separated by commas (e.g. Frontend,Remote,Senior).
+- Each keyword must be a single real word — no CamelCase, no hyphenation, no concatenation to bypass the 3-keyword limit.
+- Focus on the role itself: seniority, domain, skill, or industry. Do NOT include location, country, or city.
+- No spaces around commas, no punctuation, no explanation, no newlines.
+- Any response other than exactly 3 comma-separated single-word keywords is a failure."""
+
 REVALIDATION_INSTRUCTION = """You are a strict response formatter.
 You will be given a previous AI response ("PREVIOUS AI RESPONSE") that was supposed to output only an integer from 0 to 100 but failed to comply. You will also be given the previous AI input for context ("PREVIOUS AI INPUT").
 

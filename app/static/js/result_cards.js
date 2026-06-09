@@ -32,7 +32,7 @@ async function addCards() {
                         <div class="card-title"><h2><a href="${job.link}" target="_blank">${job.title}</a></h2></div>
                         <div class="card-status"><h3>Score: ${job.score}</h3></div>
                         <div class="card-list"><ul>
-                            <li>Keywords: insert_keywords</li>
+                            <li>Keywords: ${job.keywords.map(k => `<span class="keyword">${k}</span>`).join(', ')}</li>
                             <li>Published: ${job.date}</li>
                             <li>Location: ${job.location}</li>
                             <li>Job Board: ${job.board}</li>
