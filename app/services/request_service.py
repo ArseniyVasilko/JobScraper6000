@@ -1,14 +1,7 @@
 import requests
-from app.constants import ALL_JOB_PAGES, DUUNITORI_MAX_PAGES, DUUNITORI_REQUEST_TIMEOUT, REQUEST_DELAY_MIN, REQUEST_DELAY_MAX
+from app.constants import *
 import time
 import random
-
-#To avoid bot detection
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-    "Connection": "keep-alive",
-}
-
 
 # Redirects to correct individual job board request method
 def scan_all_jobs(job_board: str) -> list:
@@ -17,9 +10,12 @@ def scan_all_jobs(job_board: str) -> list:
 
 
 # Fetches parsable page str from link
-def fetch_page(page_link: str, headers=HEADERS, timeout=DUUNITORI_REQUEST_TIMEOUT) -> str:
+def fetch_page(page_link: str, headers=get_random_headers(), timeout=3, delay_min=3, delay_max=8) -> str:
+    time.sleep(random.uniform(delay_min, delay_max))
     try:
-        response = requests.get(page_link, timeout=timeout, headers=headers)
+        response = requests.get(page_link,
+                                timeout=timeout,
+                                headers=headers)
         response.raise_for_status()
         page = response.text
     except requests.RequestException as e:
@@ -31,7 +27,6 @@ def fetch_page(page_link: str, headers=HEADERS, timeout=DUUNITORI_REQUEST_TIMEOU
 def scan_duunitori() -> list:
     all_job_bodies = []
     for i in range(1, DUUNITORI_MAX_PAGES + 1):
-        response = fetch_page(page_link=ALL_JOB_PAGES["Duunitori"] + str(i), headers=HEADERS, timeout=DUUNITORI_REQUEST_TIMEOUT)
+        response = fetch_page(page_link=ALL_JOB_PAGES["Duunitori"] + str(i), timeout=DUUNITORI_REQUEST_TIMEOUT)
         all_job_bodies.append(response)
-        time.sleep(random.uniform(REQUEST_DELAY_MIN, REQUEST_DELAY_MAX))
     return all_job_bodies

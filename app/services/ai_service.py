@@ -2,7 +2,7 @@ from google import genai
 from app.__init__ import client
 import os
 import time
-from app.constants import SEARCH_INSTRUCTION, CLASSIFY_INSTRUCTION, REVALIDATION_INSTRUCTION, GENAI_REQUEST_RETRIES
+from app.constants import *
 import mimetypes
 import functools
 
@@ -60,7 +60,6 @@ class ErrorResponse:
 
 # Decorator shortcut to retry X denied AI server requests
 def retry_on_server_error(retries: int = GENAI_REQUEST_RETRIES):
-    """Retries the wrapped function on genai.errors.ServerError, returns None after all retries exhausted."""
     def decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
