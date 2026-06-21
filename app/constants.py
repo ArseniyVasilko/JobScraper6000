@@ -4,9 +4,9 @@ import random
 GENAI_REQUEST_RETRIES = 10 # Non-negative int only
 
 # Duunitori settings
-DUUNITORI_MAX_PAGES = 1 # Non-negative int only
+DUUNITORI_MAX_PAGES = 3 # Non-negative int only
 DUUNITORI_REQUEST_TIMEOUT = 120 # Non-negative int/float only, seconds
-MAX_JOBS_PARSED_DUUNITORI = 5 # Int if need a limit, else use None
+MAX_JOBS_PARSED_DUUNITORI = None # Int if need a limit, else use None
 DUUNITORI_REQUEST_DELAY_MIN=3 # Non-negative int/float only, seconds
 DUUNITORI_REQUEST_DELAY_MAX=8 # Non-negative int/float only, seconds
 DUUNITORI_MAX_WORKERS = 4 # Max asynch connectors to the job board, don't put too high or will get ip banned

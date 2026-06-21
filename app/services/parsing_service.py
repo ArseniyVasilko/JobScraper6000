@@ -35,20 +35,23 @@ def scan_duunitori(all_job_board_pages):
             and (exclude_container is None or exclude_container not in card.parents)
         ]
         all_jobs.extend(page_jobs)
-        if MAX_JOBS_PARSED_DUUNITORI:
-            all_jobs = all_jobs[:MAX_JOBS_PARSED_DUUNITORI]
+        print("all jobs test:", all_jobs)
 
-        # Asynchronously fetch individual job listing pages and extract+add text descriptions to each job's dict
-        with futures.ThreadPoolExecutor(max_workers=DUUNITORI_MAX_WORKERS) as executor:
-            def fetch_and_assign(job):
-                job["text"] = (bs4
-                                .BeautifulSoup(request_service
-                                               .fetch_page(job["link"],
-                                                           delay_min=DUUNITORI_REQUEST_DELAY_MIN,
-                                                           delay_max=DUUNITORI_REQUEST_DELAY_MAX),
-                                                    'html.parser')
-                                .find("div", class_="description--jobentry")
-                                .get_text(separator=" ", strip=True))
-                return job
-            all_jobs = list(executor.map(fetch_and_assign, all_jobs))
+    if MAX_JOBS_PARSED_DUUNITORI:
+        all_jobs = all_jobs[:MAX_JOBS_PARSED_DUUNITORI]
+    # Asynchronously fetch individual job listing pages and extract+add text descriptions to each job's dict
+    with futures.ThreadPoolExecutor(max_workers=DUUNITORI_MAX_WORKERS) as executor:
+        def fetch_and_assign(job):
+            job["text"] = (bs4
+                            .BeautifulSoup(request_service
+                                           .fetch_page(job["link"],
+                                                       delay_min=DUUNITORI_REQUEST_DELAY_MIN,
+                                                       delay_max=DUUNITORI_REQUEST_DELAY_MAX,
+                                                       timeout=DUUNITORI_REQUEST_TIMEOUT
+                                                       ),
+                                                'html.parser')
+                            .find("div", class_="description--jobentry")
+                            .get_text(separator=" ", strip=True))
+            return job
+        all_jobs = list(executor.map(fetch_and_assign, all_jobs))
     return all_jobs
