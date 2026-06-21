@@ -6,34 +6,39 @@ from app.constants import *
 import mimetypes
 import functools
 import json
+from concurrent import futures
 
-def filter_with_ai(all_job_details: list) -> list:
+def assess_with_ai(all_job_details: list) -> list:
     filtered_jobs = []
 
     current_dir = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(current_dir, "..", "resources", "cv", "CVForGemini.pdf")
     uploaded_file = upload_file(file_path, current_dir)
+    with futures.ThreadPoolExecutor(max_workers=GENAI_MAX_WORKERS) as executor:
+        def assess_job(job):
+            print("Evaluating link: ", job["link"])
+            job_summary = search_summarise(job["text"], uploaded_file)
+            if job_summary == "Error 503: Gemini server busy.":
+                job["score"] = -1
+                filtered_jobs.append(job)
+                pass
+            verdict = re_evaluate(job_summary).strip()
+            job["keywords"] = [word.capitalize() for word in generate_keywords(job_summary)]
+            if not verdict.isdigit() or not (0 <= int(verdict) <= 100):
+                print("AI model provided unstandardised response - attempting to extract meaning")
+                verdict = re_evaluate(verdict).strip()
+            if 0 <= int(verdict) <= 100:
+                job["score"] = int(verdict)
+                filtered_jobs.append(job)
+                print("Job evaluation score: " + str(job["score"]))
+            else:
+                print("AI failed to give standardised answer after re-evaluation, given response: " + verdict)
+                job["score"] = -1
+                filtered_jobs.append(job)
+            return job
 
-    for job in all_job_details:
-        print("Evaluating link: ", job["link"])
-        job_summary = search_summarise(job["text"], uploaded_file)
-        if job_summary == "Error 503: Gemini server busy.":
-            job["score"] = -1
-            filtered_jobs.append(job)
-            pass
-        verdict = re_evaluate(job_summary).strip()
-        job["keywords"] = [word.capitalize() for word in generate_keywords(job_summary)]
-        if not verdict.isdigit() or not (0 <= int(verdict) <= 100):
-            print("AI model provided unstandardised response - attempting to extract meaning")
-            verdict = re_evaluate(verdict).strip()
-        if 0 <= int(verdict) <= 100:
-            job["score"] = int(verdict)
-            filtered_jobs.append(job)
-            print("Job evaluation score: " + str(job["score"]))
-        else:
-            print("AI failed to give standardised answer after re-evaluation, given response: " + verdict)
-            job["score"] = -1
-            filtered_jobs.append(job)
+        filtered_jobs = list(executor.map(assess_job, all_job_details))
+
     return filtered_jobs
 
 

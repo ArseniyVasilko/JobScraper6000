@@ -2,9 +2,11 @@ import random
 
 # General settings
 GENAI_REQUEST_RETRIES = 10 # Non-negative int only
+GENAI_MAX_WORKERS = 100
+
 
 # Duunitori settings
-DUUNITORI_MAX_PAGES = 3 # Non-negative int only
+DUUNITORI_MAX_PAGES = 20 # Non-negative int only
 DUUNITORI_REQUEST_TIMEOUT = 120 # Non-negative int/float only, seconds
 MAX_JOBS_PARSED_DUUNITORI = None # Int if need a limit, else use None
 DUUNITORI_REQUEST_DELAY_MIN=3 # Non-negative int/float only, seconds

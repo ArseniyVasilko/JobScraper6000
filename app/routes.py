@@ -25,7 +25,7 @@ def get_results():
         print(f"Links successfully extracted")
 
 
-        filtered_job_details = ai_service.filter_with_ai(all_job_details)
+        filtered_job_details = ai_service.assess_with_ai(all_job_details)
         print(f"Job listings for {job_board} successfully filtered")
         # print(filtered_job_details)
 
