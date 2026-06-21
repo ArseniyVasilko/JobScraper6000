@@ -45,7 +45,9 @@ def scan_duunitori(all_job_board_pages):
                                 .BeautifulSoup(request_service
                                                .fetch_page(job["link"],
                                                            delay_min=DUUNITORI_REQUEST_DELAY_MIN,
-                                                           delay_max=DUUNITORI_REQUEST_DELAY_MAX),
+                                                           delay_max=DUUNITORI_REQUEST_DELAY_MAX,
+                                                           timeout=DUUNITORI_REQUEST_TIMEOUT
+                                                           ),
                                                     'html.parser')
                                 .find("div", class_="description--jobentry")
                                 .get_text(separator=" ", strip=True))
